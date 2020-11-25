@@ -9,7 +9,7 @@ struct GladiatorTools: ParsableCommand {
         // Commands can define a version for automatic '--version' support.
         version: "1.0.0",
         
-        subcommands: [AssetBuilder.self])
+        subcommands: [AssetBuilder.self, Project.self])
 }
 
 struct OutputOptions: ParsableArguments {
