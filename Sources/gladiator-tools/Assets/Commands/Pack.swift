@@ -34,9 +34,7 @@ extension AssetBuilder.Pack {
                 return RawAsset(rawData: d.subdata(in: 0..<d.endIndex-64))
             }
             
-            let pack = AssetManager.buildAssetPackData(assets: assets)
-
-            AssetManager.saveAsset(path: options.outputPath, type: .pack, data: pack)
+            AssetManager.saveAssetPack(assets: assets, path: options.outputPath)
         }
     }
     

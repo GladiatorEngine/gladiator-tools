@@ -8,11 +8,11 @@
 import Foundation
 import AssetManager
 
-struct RawAsset: Asset {
+class RawAsset: Asset {
     private var data: Data
     private var asset: AssetType = .texture
     
-    init(sourceData: Data) {
+    required init(sourceData: Data) {
         self.data = sourceData
     }
     
