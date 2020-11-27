@@ -33,7 +33,9 @@ extension AssetBuilder.Model {
             
             let vertices = try JSONDecoder().decode([[Float]].self, from: jsonData)
             
-            let model = Model(vertices: vertices)
+            let model = Model(vertices: vertices.map { v in
+                Vertex(coordinate: .init(x: v[0], y: v[1], z: v[2]))
+            })
             AssetManager.saveAsset(path: options.outputPath, asset: model)
         }
     }
@@ -56,7 +58,9 @@ extension AssetBuilder.Model {
             let manager = AssetManager()
             try manager.loadModelAsset(path: options.model)
             
-            let data = try JSONEncoder().encode(manager.models[0].vertices)
+            let data = try JSONEncoder().encode(manager.models[0].vertices.map { v in
+                return [v.coordinate.x, v.coordinate.y, v.coordinate.z, 1]
+            })
             
             try data.write(to: URL(fileURLWithPath: outputOptions.outputPath))
         }
